@@ -1,7 +1,210 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+
+<input type="hidden" name="country" id="svgHtml" value="@ViewBag.Message">
+<section class="mbx-creator d-flex flex-wrap">
+
+    <aside class="mbx-creator-left">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#home" role="tab"><i class="fas fa-font"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#profile" role="tab"><i class="fas fa-images"></i></a>
+            </li>
+
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="home" role="tabpanel">
+                <div class="tab-cont">
+                    <label>Text Description</label>
+                    <textarea class="form-control" id="exampleTextarea" rows="3" onInput="addtext(this)">ADD YOUR TEXT</textarea>
+                </div>
+                <div class="tab-cont">
+                    <label>Choose Font</label>
+                    <select class="form-control" id="selectfont">
+                        <option>Roboto Condensed</option>
+                        <option>Betty Regular</option>
+                        <option>Compact</option>
+                    </select>
+                </div>
+                <div class="tab-cont">
+                    <label>Text Color</label>
+                    <div id="pickcolor"></div>
+                </div>
+                <div class="tab-cont">
+                    <label>Text Border Color</label>
+                    <div class="d-flex align-items-center">
+                        <select class="form-control" id="selectbordertext">
+                            <option>0px</option>
+                            <option>1px</option>
+                            <option>2px</option>
+                            <option>3px</option>
+                        </select>
+                        <div id="pickbordercolor"></div>
+                    </div>
+
+                </div>
+                <div class="tab-cont">
+                    <label>Text Aligns</label>
+
+                    <div class="tab-cont-aligns d-flex flex-wrap">
+
+                        <button id="xalignLeft" type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Left X">
+                            <i class="fas fa-align-left"></i>
+                        </button>
+
+                        <button id="xalignCenter" type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Center X">
+                            <i class="fas fa-align-center"></i>
+                        </button>
+
+                        <button id="xalignRight" type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Right X">
+                            <i class="fas fa-align-right"></i>
+                        </button>
+
+                        <button id="yalignTop" type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Top Y">
+                            <div class="d-flex align-items-center flex-column">
+                                <i class="mm3 fas fa-minus"></i>
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+
+                        </button>
+
+                        <button id="yalignCenter" type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Center Y">
+                            <i class="fas fa-minus"></i>
+                        </button>
+
+                        <button id="yalignBottom" type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Bottom Y">
+                            <div class="d-flex align-items-center flex-column">
+                                <i class="fas fa-arrow-down"></i>
+                                <i class="mm3 fas fa-minus"></i>
+                            </div>
+
+                        </button>
+
+                        <button id="xstretch" type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Stretch X">
+                            <i class="fas fa-text-width"></i>
+                        </button>
+
+                        <button id="ystretch" type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Stretch Y">
+                            <i class="fas fa-text-height"></i>
+                        </button>
+
+                        <button id="" type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Centrar"></button>
+
+                        <button type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Centrar"></button>
+
+                        <button type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Duplicar"></button>
+
+                        <button type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title=""></button>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="profile" role="tabpanel">b</div>
+        </div>
+    </aside>
+
+    <aside id="htmlPng" class="mbx-creator-center d-flex justify-content-center">
+        <div class="mbximg d-flex justify-content-center" style="background: url(/assets/img/TC1WH0000.jpg) no-repeat center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+
+            <div id="boxlimit" class="boxlimit">
+
+            </div>
+        </div>
+    </aside>
+
+    <aside class="mbx-creator-right">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#product" role="tab"><i class="fas fa-archive"></i></i></a>
+            </li>
+            <!-- 			  <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#other" role="tab"><i class="fas fa-images"></i></a>
+            </li> -->
+
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="product" role="tabpanel">
+
+                <div class="tab-cont">
+                    <label>Choose Product</label>
+                    <div class="d-flex align-items-center">
+                        <select class="form-control" id="selectproduct">
+                            <option>T-Shirt</option>
+                            <option>Long Sleeve</option>
+                            <option>Raglan</option>
+                            <option>Hoodie</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="tab-cont">
+                    <label>Text Color</label>
+                    <div class="d-flex flex-wrap wrap5">
+                        <div style="background:#be0;" id="pickcolor"></div>
+                        <div style="background:#ff3e04;" id="pickcolor"></div>
+                        <div style="background:yellow;" id="pickcolor"></div>
+                        <div style="background:#c3e2f1;" id="pickcolor"></div>
+                        <div style="background:black;" id="pickcolor"></div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="tab-pane" id="profile" role="tabpanel">b</div>
+        </div>
+    </aside>
+
+</section>
+@using (Html.BeginForm("About", "Home", FormMethod.Post, new { id = "drawingForm" }))
+{
+
+    <input type="hidden" name="logo" id="logo" />
+    <input type="hidden" name="imageData" id="imageData" />
+    <button type="button" id="btnSave" class="btn btn-primary btn-lg btn-block">PNG</button>
+
+}
+<script>
+    $("#boxlimit").append($("#svgHtml").val());
+    $("svg").attr("width", "100%");
+    $("svg").attr("height", "100%");
+    $("#btnPng").click(function () {
+        var png = $("#htmlPng").clone();
+        $("body").html(png);
+        $("aside").attr("width", "100%");
+        $("aside").attr("height", "100%");
+    });
+    $("#btnSvg").click(function () {
+        var svg = $("#boxlimit").clone();
+        $("body").html(svg);
+        $("div").attr("width", "100%");
+        $("div").attr("height", "100%");
+    });
+    $("#btnSave").click(function () {
+        var parentpng = $("<div>");
+        parentpng.append($("#htmlPng").clone());
+        var png = parentpng.html();
+
+        var parentSvg = $("<div>");
+        var html = $("#boxlimit").clone();
+        html.attr("width", "100%");
+        html.attr("height", "100%");
+        parentSvg.append(html);
+
+        var svg = parentSvg.html();
+
+        $("#logo").val(svg);
+        $("#imageData").val(png);
+
+        var form = $("#drawingForm");
+        form.submit()
+    });
+</script>

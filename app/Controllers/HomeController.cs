@@ -29,14 +29,14 @@ namespace app.Controllers
 
         public ActionResult About(string name)
         {
-            if (name == null)
+            if (name != null)
             {
-                name = "svg.svg";
+                using (StreamReader sr = new StreamReader(Path.Combine(Server.MapPath("~/assets/svg"), name)))
+                {
+                    ViewBag.Message = sr.ReadToEnd();
+                }
             }
-            using (StreamReader sr = new StreamReader(Path.Combine(Server.MapPath("~/assets/svg"), name)))
-            {
-                ViewBag.Message = sr.ReadToEnd();
-            }
+
             /*    var util = new Util.Util();
                 var model = new List<Jpg>();
                 model = util.GetJpg(Server.MapPath("/"));*/
@@ -62,11 +62,13 @@ namespace app.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult About(string imageData, string logo, string wt, string ht)
+        public ActionResult About(string imageData, string logo, string wt, string ht, string ob)
         {
+            Namber m = JsonConvert.DeserializeObject<Namber>(ob);
+            var name = m.GetDate();
             var util = new Util.Util();
-            var img = util.WriteFileLogo(Server.MapPath("~/"), logo, "logo", "logo", wt, ht);
-            util.WriteFileJpg(Server.MapPath("~/"), imageData, "png", "png", img);
+            var img = util.WriteFileLogo(Server.MapPath("~/"), logo, name, "logo", wt, ht);
+            util.WriteFileJpg(Server.MapPath("~/"), imageData, name, "png", img);
             return RedirectToAction("Contact", "Home");
         }
 

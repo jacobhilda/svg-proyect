@@ -155,6 +155,7 @@
     </Compile>
     <Compile Include="Models\Base.cs" />
     <Compile Include="Models\Jpg.cs" />
+    <Compile Include="Models\Namber.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Svg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -168,7 +169,6 @@
     </Content>
     <Content Include="assets\img\TC1WH0000.jpg" />
     <Content Include="assets\svg\04.svg" />
-    <Content Include="assets\svg\svg.svg" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\basef.css" />
     <Content Include="Content\base.css" />

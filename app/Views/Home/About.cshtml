@@ -1,41 +1,147 @@
-﻿@{
+﻿@using Newtonsoft.Json;
+@model IEnumerable<app.Models.Base>
+@{
     ViewBag.Title = "About";
 }
-
-
-<input type="hidden" name="country" id="svgHtml" value="@ViewBag.Message">
 <section class="mbx-creator d-flex flex-wrap">
-
     <aside class="mbx-creator-left">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#home" role="tab"><i class="fas fa-font"></i></a>
+                <a class="nav-link active" data-toggle="tab" href="#home" role="tab">
+                    <i class="fas fa-font"></i>
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#profile" role="tab"><i class="fas fa-images"></i></a>
+                <a class="nav-link" data-toggle="tab" href="#profile" role="tab">
+                    <i class="fas fa-images"></i>
+                </a>
             </li>
-
         </ul>
-
         <!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane active" id="home" role="tabpanel">
                 <div class="tab-cont">
                     <label>Text Description</label>
-                    <textarea class="form-control" id="exampleTextarea" rows="3" onInput="addtext(this)">ADD YOUR TEXT</textarea>
+                    <textarea class="form-control" id="exampleTextarea" rows="3" onInput="addtext(this)">YOUR TEXT</textarea>
                 </div>
                 <div class="tab-cont">
                     <label>Choose Font</label>
                     <select class="form-control" id="selectfont">
-                        <option>Roboto Condensed</option>
-                        <option>Betty Regular</option>
-                        <option>Compact</option>
+                        <option>Arial</option>
+                        <option>Betty</option>
+                        <option>Compacta Blk BT</option>
                     </select>
                 </div>
+
                 <div class="tab-cont">
                     <label>Text Color</label>
-                    <div id="pickcolor"></div>
+                    @*<div id="pickcolor"></div>*@
+                    <div class="mainbox-color">
+                        <div class="radio-color">
+                            <label class="wrap5">
+                                <input onclick="setColorAll('fb2360')" type="radio" name="catgo5" value="">
+                                <div style="background:#fb2360" class="cr"></div>
+                            </label>
+                        </div>
+                        <div class="radio-color">
+                            <label class="wrap5">
+                                <input onclick="setColorAll('003759')" type="radio" name="catgo5" value="">
+                                <div style="background:#003759" class="cr"></div>
+                            </label>
+                        </div>
+                        <div class="radio-color">
+                            <label class="wrap5">
+                                <input onclick="setColorAll('c3e2f1')" type="radio" name="catgo5" value="">
+                                <div style="background:#c3e2f1" class="cr"></div>
+                            </label>
+                        </div>
+                        <div class="radio-color">
+                            <label class="wrap5">
+                                <input onclick="setColorAll('FED429')" type="radio" name="catgo5" value="">
+                                <div style="background:#FED429" class="cr"></div>
+                            </label>
+                        </div>
+                        <div class="radio-color">
+                            <label class="wrap5">
+                                <input onclick="setColorAll('c10d0f')" type="radio" name="catgo5" value="">
+                                <div style="background:#c10d0f" class="cr"></div>
+                            </label>
+                        </div>
+                        <div class="radio-color">
+                            <label class="wrap5">
+                                <input onclick="setColorAll('1F2D63')" type="radio" name="catgo5" value="">
+                                <div style="background:#1F2D63" class="cr"></div>
+                            </label>
+                        </div>
+                        <div class="radio-color">
+                            <label class="wrap5">
+                                <input onclick="setColorAll('ff3e04')" type="radio" name="catgo5" value="">
+                                <div style="background:#ff3e04" class="cr"></div>
+                            </label>
+                        </div>
+                        <div class="radio-color">
+                            <label class="wrap5">
+                                <input onclick="setColorAll('0B6B4C')" type="radio" name="catgo5" value="">
+                                <div style="background:#0B6B4C" class="cr"></div>
+                            </label>
+                        </div>
+                        <div class="radio-color">
+                            <label class="wrap5">
+                                <input onclick="setColorAll('0059A4')" type="radio" name="catgo5" value="">
+                                <div style="background:#0059A4" class="cr"></div>
+                            </label>
+                        </div>
+                        <div class="radio-color">
+                            <label class="wrap5">
+                                <input onclick="setColorAll('4D4948')" type="radio" name="catgo5" value="">
+                                <div style="background:#4D4948" class="cr"></div>
+                            </label>
+                        </div>
+                        <div class="radio-color">
+                            <label class="wrap5">
+                                <input onclick="setColorAll('00923F')" type="radio" name="catgo5" value="">
+                                <div style="background:#00923F" class="cr"></div>
+                            </label>
+                        </div>
+                        <div class="radio-color">
+                            <label class="wrap5">
+                                <input onclick="setColorAll('C6C7C8')" type="radio" name="catgo5" value="">
+                                <div style="background:#C6C7C8" class="cr"></div>
+                            </label>
+                        </div>
+                        <div class="radio-color">
+                            <label class="wrap5">
+                                <input onclick="setColorAll('75C5F0')" type="radio" name="catgo5" value="">
+                                <div style="background:#75C5F0" class="cr"></div>
+                            </label>
+                        </div>
+                        <div class="radio-color">
+                            <label class="wrap5">
+                                <input onclick="setColorAll('A8AB82')" type="radio" name="catgo5" value="">
+                                <div style="background:#A8AB82" class="cr"></div>
+                            </label>
+                        </div>
+                        <div class="radio-color">
+                            <label class="wrap5">
+                                <input onclick="setColorAll('EE7F00')" type="radio" name="catgo5" value="">
+                                <div style="background:#EE7F00" class="cr"></div>
+                            </label>
+                        </div>
+                        <div class="radio-color">
+                            <label class="wrap5">
+                                <input onclick="setColorAll('E2001A')" type="radio" name="catgo5" value="">
+                                <div style="background:#E2001A" class="cr"></div>
+                            </label>
+                        </div>
+                        <div class="radio-color">
+                            <label class="wrap5">
+                                <input onclick="setColorAll('F3E8D6')" type="radio" name="catgo5" value="">
+                                <div style="background:#F3E8D6" class="cr"></div>
+                            </label>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="tab-cont">
                     <label>Text Border Color</label>
                     <div class="d-flex align-items-center">
@@ -45,46 +151,116 @@
                             <option>2px</option>
                             <option>3px</option>
                         </select>
-                        <div id="pickbordercolor"></div>
+                        @*<div id="pickbordercolor"></div>*@
+                        <div class="mainbox-bordercolor ">
+                            <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setborderColorAll(this)" type="radio" name="catgo6" value="">
+                                    <div style="border: 4px solid #fb2360; background:#fff" class="cr"></div>
+                                </label>
+                            </div>
+                            <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setborderColorAll(this)" type="radio" name="catgo6" value="">
+                                    <div style="border: 4px solid #003759; background:#fff" class="cr"></div>
+                                </label>
+                            </div>
+                            <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setborderColorAll(this)" type="radio" name="catgo6" value="">
+                                    <div style="border: 4px solid #c3e2f1; background:#fff" class="cr"></div>
+                                </label>
+                            </div>
+                            <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setborderColorAll(this)" type="radio" name="catgo6" value="">
+                                    <div style="border: 4px solid #FED429; background:#fff" class="cr"></div>
+                                </label>
+                            </div>
+                            <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setborderColorAll(this)" type="radio" name="catgo6" value="">
+                                    <div style="border: 4px solid #c10d0f; background:#fff" class="cr"></div>
+                                </label>
+                            </div>
+                            <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setborderColorAll(this)" type="radio" name="catgo6" value="">
+                                    <div style="border: 4px solid #1F2D63; background:#fff" class="cr"></div>
+                                </label>
+                            </div>
+                            <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setborderColorAll(this)" type="radio" name="catgo6" value="">
+                                    <div style="border: 4px solid #ff3e04; background:#fff" class="cr"></div>
+                                </label>
+                            </div>
+                            <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setborderColorAll(this)" type="radio" name="catgo6" value="">
+                                    <div style="border: 4px solid #0B6B4C; background:#fff" class="cr"></div>
+                                </label>
+                            </div>
+                            <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setborderColorAll(this)" type="radio" name="catgo6" value="">
+                                    <div style="border: 4px solid #0059A4; background:#fff" class="cr"></div>
+                                </label>
+                            </div>
+                            <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setborderColorAll(this)" type="radio" name="catgo6" value="">
+                                    <div style="border: 4px solid #4D4948; background:#fff" class="cr"></div>
+                                </label>
+                            </div>
+                            <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setborderColorAll(this)" type="radio" name="catgo6" value="">
+                                    <div style="border: 4px solid #00923F; background:#fff" class="cr"></div>
+                                </label>
+                            </div>
+                            <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setborderColorAll(this)" type="radio" name="catgo6" value="">
+                                    <div style="border: 4px solid #C6C7C8; background:#fff" class="cr"></div>
+                                </label>
+                            </div>
+                            <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setborderColorAll(this)" type="radio" name="catgo6" value="">
+                                    <div style="border: 4px solid #75C5F0; background:#fff" class="cr"></div>
+                                </label>
+                            </div>
+                            <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setborderColorAll(this)" type="radio" name="catgo6" value="">
+                                    <div style="border: 4px solid #A8AB82; background:#fff" class="cr"></div>
+                                </label>
+                            </div>
+                            <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setborderColorAll(this)" type="radio" name="catgo6" value="">
+                                    <div style="border: 4px solid #EE7F00; background:#fff" class="cr"></div>
+                                </label>
+                            </div>
+                            <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setborderColorAll(this)" type="radio" name="catgo6" value="">
+                                    <div style="border: 4px solid #000; background:#fff" class="cr"></div>
+                                </label>
+                            </div>
+                            <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setborderColorAll(this)" type="radio" name="catgo6" value="">
+                                    <div style="border: 4px solid #E2001A; background:#fff" class="cr"></div>
+                                </label>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
                 <div class="tab-cont">
-                    <label>Text Aligns</label>
-
+                    <label>Text Stretch</label>
                     <div class="tab-cont-aligns d-flex flex-wrap">
-
-                        <button id="xalignLeft" type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Left X">
-                            <i class="fas fa-align-left"></i>
-                        </button>
-
-                        <button id="xalignCenter" type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Center X">
-                            <i class="fas fa-align-center"></i>
-                        </button>
-
-                        <button id="xalignRight" type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Right X">
-                            <i class="fas fa-align-right"></i>
-                        </button>
-
-                        <button id="yalignTop" type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Top Y">
-                            <div class="d-flex align-items-center flex-column">
-                                <i class="mm3 fas fa-minus"></i>
-                                <i class="fas fa-arrow-up"></i>
-                            </div>
-
-                        </button>
-
-                        <button id="yalignCenter" type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Center Y">
-                            <i class="fas fa-minus"></i>
-                        </button>
-
-                        <button id="yalignBottom" type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Bottom Y">
-                            <div class="d-flex align-items-center flex-column">
-                                <i class="fas fa-arrow-down"></i>
-                                <i class="mm3 fas fa-minus"></i>
-                            </div>
-
-                        </button>
 
                         <button id="xstretch" type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Stretch X">
                             <i class="fas fa-text-width"></i>
@@ -93,89 +269,78 @@
                         <button id="ystretch" type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Stretch Y">
                             <i class="fas fa-text-height"></i>
                         </button>
-
-                        <button id="" type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Centrar"></button>
-
-                        <button type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Centrar"></button>
-
-                        <button type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title="Duplicar"></button>
-
-                        <button type="button" class="btn btn-default d-flex align-items-center justify-content-center" data-toggle="tooltip" data-placement="top" title="" data-bind="" data-original-title=""></button>
-
-
                     </div>
                 </div>
             </div>
-            <div class="tab-pane" id="profile" role="tabpanel">b</div>
-        </div>
-    </aside>
-
-    <aside id="htmlPng" class="mbx-creator-center d-flex justify-content-center">
-        <div class="mbximg d-flex justify-content-center" style="background: url(/assets/img/TC1WH0000.jpg) no-repeat center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
-
-            <div id="boxlimit" class="boxlimit">
-
+            <div class="tab-pane" id="profile" role="tabpanel">
+                <div class="row">
+                </div>
             </div>
         </div>
     </aside>
-
+    <aside class="mbx-creator-center d-flex justify-content-center">
+        <div id="htmlPng" class="mbximg d-flex justify-content-center">
+            <img id="imgbase" class="imgbase" src="/assets/img/TC1WH0000.jpg">
+            <div id="boxlimit" class="boxlimit">
+                @Html.Raw(@ViewBag.Message)
+            </div>
+        </div>
+    </aside>
     <aside class="mbx-creator-right">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#product" role="tab"><i class="fas fa-archive"></i></i></a>
+                <a class="nav-link active" data-toggle="tab" href="#product" role="tab">
+                    <i class="fas fa-archive"></i>
+                    </i>
+                </a>
             </li>
-            <!-- 			  <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#other" role="tab"><i class="fas fa-images"></i></a>
-            </li> -->
-
         </ul>
+        @{var lst = (from x in Model select x).Where(x => x.Ref == 0).ToList();}
 
-        <!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane active" id="product" role="tabpanel">
-
                 <div class="tab-cont">
                     <label>Choose Product</label>
                     <div class="d-flex align-items-center">
                         <select class="form-control" id="selectproduct">
-                            <option>T-Shirt</option>
-                            <option>Long Sleeve</option>
-                            <option>Raglan</option>
-                            <option>Hoodie</option>
+                            @foreach (var item in lst)
+                            {
+                                <option class="modelOption" disabled>@item.Title</option>
+                                var list = Model.Where(x => x.Ref == item.Id).ToList();
+                                foreach (var O in list)
+                                {
+                                    <option coor="@O.X,@O.Y,@O.W,@O.H,@O.Align" value="@O.Code">@O.Title</option>
+                                }
+                            }
                         </select>
                     </div>
                 </div>
-
                 <div class="tab-cont">
-                    <label>Text Color</label>
-                    <div class="d-flex flex-wrap wrap5">
+                    <label>Product Color</label>
+                    <div id="imgProduct" class="d-flex flex-wrap wrap5">
                         <div style="background:#be0;" id="pickcolor"></div>
                         <div style="background:#ff3e04;" id="pickcolor"></div>
                         <div style="background:yellow;" id="pickcolor"></div>
                         <div style="background:#c3e2f1;" id="pickcolor"></div>
                         <div style="background:black;" id="pickcolor"></div>
                     </div>
-
                 </div>
-
             </div>
             <div class="tab-pane" id="profile" role="tabpanel">b</div>
         </div>
     </aside>
-
 </section>
+
 @using (Html.BeginForm("About", "Home", FormMethod.Post, new { id = "drawingForm" }))
 {
-
     <input type="hidden" name="logo" id="logo" />
     <input type="hidden" name="imageData" id="imageData" />
+    <input type="hidden" name="wt" id="wt" />
+    <input type="hidden" name="ht" id="ht" />
     <button type="button" id="btnSave" class="btn btn-primary btn-lg btn-block">PNG</button>
-
 }
 <script>
-    $("#boxlimit").append($("#svgHtml").val());
-    $("svg").attr("width", "100%");
-    $("svg").attr("height", "100%");
+
     $("#btnPng").click(function () {
         var png = $("#htmlPng").clone();
         $("body").html(png);
@@ -190,21 +355,89 @@
     });
     $("#btnSave").click(function () {
         var parentpng = $("<div>");
-        parentpng.append($("#htmlPng").clone());
-        var png = parentpng.html();
+        var obj = $("#htmlPng").clone();
+        obj.css("width", "783px");
+        obj.css("height", "1000px");
+        obj.css("margin", "0 auto");
 
+        obj.children("img").css("width", "100%");
+        obj.children("img").css("height", "auto");
+        var w = $("#boxlimit")[0].getBoundingClientRect().width;
+        var h = $("#boxlimit")[0].getBoundingClientRect().height;
+
+        parentpng.append(obj);
+
+        parentpng.children("div").children("div").html("[IMG]");
+        var png = parentpng.html();
         var parentSvg = $("<div>");
         var html = $("#boxlimit").clone();
-        html.attr("width", "100%");
-        html.attr("height", "100%");
-        parentSvg.append(html);
+        html.attr("width", w +"px");
+        html.attr("height", h+"px");
 
+        html.attr("w", w );
+        html.attr("h", h );
+
+        html.css("position", "relative");
+        html.children("div").addClass("justify-content-center");
+        html.children("div").css("position", "absolute");
+        html.children("div").css("border", "none");
+
+        $("#wt").val(w);
+        $("#ht").val(h);
+
+        parentSvg.append(html);
         var svg = parentSvg.html();
+        $("#imageData").val(png);
 
         $("#logo").val(svg);
-        $("#imageData").val(png);
 
         var form = $("#drawingForm");
         form.submit()
+    });
+    var PRODUCT = [];
+    function setUrlImg(img) {
+        $("#imgbase").attr("src", img);
+    }
+    function SerachProduct() {
+        var item = null;
+        var pro = $("#selectproduct").val();
+        PRODUCT.forEach(function (element) {
+            if (element.Code == pro) {
+                $("#imgProduct").empty();
+                var i = 0;
+                element.Colors.forEach(function (item) {
+                    var url = "http://images.idakoos.com/singlebases/" + pro + item + ".jpg";
+                    if (element.Hexa[i].split(',').length > 1) {
+                        $("#imgProduct").append("<div  id='pickcolor' style='background:linear-gradient(146deg," + element.Hexa[i].split(',')[0] + " 50%, " + element.Hexa[i].split(',')[1] + " 55%) ;'  onclick=setUrlImg('" + url + "')></div>");
+
+                    } else {
+                        $("#imgProduct").append("<div  id='pickcolor' style='background:" + element.Hexa[i] + ";'  onclick=setUrlImg('" + url + "')></div>");
+
+                    }
+                    if (i == 0) {
+                        setUrlImg(url);
+                    }
+                    i++;
+                });
+
+            }
+        });
+    }
+    function GetProduct() {
+        $.ajax({
+            url: '/Home/GetProduct',
+            type: 'GET',
+            success: function (response) {
+                PRODUCT = response;
+                SerachProduct();
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+    GetProduct();
+    $("#selectproduct").change(function () {
+        SerachProduct();
     });
 </script>

@@ -6,7 +6,6 @@
 */
 
 (function(window, document, undefined){
-
 "use strict";
 
 var _html2canvas = {},
@@ -56,7 +55,6 @@ _html2canvas.Util.asFloat = function(v) {
     return results;
   };
 })();
-
 
 _html2canvas.Util.parseBackgroundImage = function (value) {
     var whitespace = ' \r\n\t',
@@ -336,7 +334,6 @@ function backgroundBoundsFactory( prop, el, bounds, image, imageIndex, backgroun
       }
     }
 
-
     if(bgposition[1] === 'auto') {
       topPos = left / image.width * image.height;
     } else if (bgposition[1].toString().indexOf("%") !== -1){
@@ -345,7 +342,6 @@ function backgroundBoundsFactory( prop, el, bounds, image, imageIndex, backgroun
       if(prop !== 'backgroundSize') {
         topPos -= (backgroundSize || image).height * percentage;
       }
-
     } else {
       topPos = parseInt(bgposition[1],10);
     }
@@ -371,7 +367,6 @@ _html2canvas.Util.Extend = function (options, defaults) {
   }
   return defaults;
 };
-
 
 /*
  * Derived from jQuery.contents()
@@ -406,7 +401,6 @@ _html2canvas.Util.Children = function( elem ) {
       }
       return ret;
     })(elem.childNodes);
-
   } catch (ex) {
     _html2canvas.Util.log("html2canvas.Util.Children failed with exception: " + ex.message);
     children = [];
@@ -418,7 +412,6 @@ _html2canvas.Util.isTransparent = function(backgroundColor) {
   return (backgroundColor === "transparent" || backgroundColor === "rgba(0, 0, 0, 0)");
 };
 _html2canvas.Util.Font = (function () {
-
   var fontData = {};
 
   return function(font, fontSize, doc) {
@@ -735,7 +728,6 @@ _html2canvas.Util.Font = (function () {
                     gradient.y1 - gradient.cy
                     );
                 } else { // ellipse
-
                   gradient.type = m2[0];
 
                   gradient.rx = Math.max(
@@ -758,7 +750,6 @@ _html2canvas.Util.Font = (function () {
                     gradient.y1 - gradient.cy
                     );
                 } else { // ellipse
-
                   gradient.type = m2[0];
 
                   gradient.rx = Math.min(
@@ -962,7 +953,6 @@ function h2cRenderContext(width, height) {
       });
     },
     drawShape: function() {
-
       var shape = [];
 
       storage.push({
@@ -1003,7 +993,6 @@ function h2cRenderContext(width, height) {
           });
         }
       };
-
     },
     drawImage: function () {
       storage.push({
@@ -1368,7 +1357,6 @@ _html2canvas.Parse = function (images, options) {
   }
 
   function renderImage(ctx, element, image, bounds, borders) {
-
     var paddingLeft = getCSSInt(element, 'paddingLeft'),
     paddingTop = getCSSInt(element, 'paddingTop'),
     paddingRight = getCSSInt(element, 'paddingRight'),
@@ -1404,7 +1392,6 @@ _html2canvas.Parse = function (images, options) {
   }
 
   var getCurvePoints = (function(kappa) {
-
     return function(x, y, r1, r2) {
       var ox = (r1) * kappa, // control point offset horizontal
       oy = (r2) * kappa, // control point offset vertical
@@ -1468,7 +1455,6 @@ _html2canvas.Parse = function (images, options) {
   })(4 * ((Math.sqrt(2) - 1) / 3));
 
   function bezierCurve(start, startControl, endControl, end) {
-
     var lerp = function (a, b, t) {
       return {
         x:a.x + (b.x - a.x) * t,
@@ -1544,7 +1530,6 @@ _html2canvas.Parse = function (images, options) {
   }
 
   function calculateCurvePoints(bounds, borderRadius, borders) {
-
     var x = bounds.left,
     y = bounds.top,
     width = bounds.width,
@@ -1667,7 +1652,6 @@ _html2canvas.Parse = function (images, options) {
     };
 
     for (borderSide = 0; borderSide < 4; borderSide++) {
-
       if (borders[borderSide].width > 0) {
         bx = x;
         by = y;
@@ -1731,7 +1715,6 @@ _html2canvas.Parse = function (images, options) {
           args: borderArgs,
           color: borders[borderSide].color
         });
-
       }
     }
 
@@ -1756,7 +1739,6 @@ _html2canvas.Parse = function (images, options) {
   }
 
   function renderFormValue (el, bounds, stack){
-
     var valueWrap = doc.createElement('valuewrap'),
     cssPropertyArray = ['lineHeight','textAlign','fontFamily','color','fontSize','paddingLeft','paddingTop','width','height','border','borderLeftWidth','borderTopWidth'],
     textValue,
@@ -1862,7 +1844,6 @@ _html2canvas.Parse = function (images, options) {
       el.removeChild(after);
       el.className = el.className.replace(pseudoHide + "-after", "").trim();
     }
-
   }
 
   function renderBackgroundRepeat(ctx, image, backgroundPosition, bounds) {
@@ -2064,7 +2045,6 @@ _html2canvas.Parse = function (images, options) {
     borderData = parseBorders(element, bounds, borders),
     backgroundColor = (ignoreElementsRegExp.test(element.nodeName)) ? "#efefef" : getCSS(element, "backgroundColor");
 
-
     createShape(ctx, borderData.clip);
 
     ctx.save();
@@ -2174,7 +2154,6 @@ function h2czContext(zindex) {
 }
 
 _html2canvas.Preload = function( options ) {
-
   var images = {
     numLoaded: 0,   // also failed are counted here
     numFailed: 0,
@@ -2214,7 +2193,6 @@ _html2canvas.Preload = function( options ) {
       if (typeof options.complete === "function"){
         options.complete(images);
       }
-
     }
   }
 
@@ -2262,7 +2240,6 @@ _html2canvas.Preload = function( options ) {
     script.setAttribute("src", scriptUrl);
     imageObj.script = script;
     window.document.body.appendChild(script);
-
   }
 
   function loadPseudoElement(element, type) {
@@ -2413,7 +2390,6 @@ _html2canvas.Preload = function( options ) {
           proxyGetImage( src, img, imageObj );
         }
       }
-
     },
     cleanupDOM: function(cause) {
       var img, src;
@@ -2492,7 +2468,6 @@ _html2canvas.Preload = function( options ) {
 };
 
 _html2canvas.Renderer = function(parseQueue, options){
-
   // http://www.w3.org/TR/CSS21/zindex.html
   function createRenderQueue(parseQueue) {
     var queue = [],
@@ -2594,7 +2569,6 @@ _html2canvas.Renderer = function(parseQueue, options){
 };
 
 _html2canvas.Util.Support = function (options, doc) {
-
   function supportSVGRendering() {
     var img = new Image(),
     canvas = doc.createElement("canvas"),
@@ -2691,7 +2665,6 @@ window.html2canvas = function(elements, opts) {
 
   _html2canvas.logging = options.logging;
   options.complete = function( images ) {
-
     if (typeof options.onpreloaded === "function") {
       if ( options.onpreloaded( images ) === false ) {
         return;
@@ -2710,8 +2683,6 @@ window.html2canvas = function(elements, opts) {
     if (typeof options.onrendered === "function") {
       options.onrendered( canvas );
     }
-
-
   };
 
   // for pages without images, we still want this to be async, i.e. return methods before executing

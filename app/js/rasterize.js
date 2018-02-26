@@ -1,8 +1,9 @@
-var webPage = require('webpage');
-var page = webPage.create();
-
-page.viewportSize = { width: 1920, height: 1080 };
-page.open("[URL]", function start(status) {
-    page.render("[NAME]", { format: 'png', quality: '100' });
-    phantom.exit();
+var page = require('webpage').create();
+var url = '[URL]';
+page.viewportSize = { width: [w], height: [h] };
+page.open(url, function (status) {
+    window.setTimeout(function () {
+        page.render('[NAME]', { format: 'png', quality: '50' });
+        phantom.exit();
+    }, 200);
 });

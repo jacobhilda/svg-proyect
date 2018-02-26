@@ -1,0 +1,22 @@
+/*****FUENTES TEXTOS****/
+/**BETTY**/
+@font-face {
+    font-family: 'Betty';
+    src: url('/Content/files/Betty-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+/** Compacta Blk BT **/
+@font-face {
+    font-family: 'Compacta Blk BT';
+    src: url('/Content/files/COMPCTAK.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+/** Swiss911 UCm BT **/
+@font-face {
+    font-family: 'Swiss911 UCm BT';
+    src: url('/Content/files/Swiss911UltraCompressedBT.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

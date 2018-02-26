@@ -1,4 +1,8 @@
-﻿using System;
+﻿using app.Data;
+using app.Models;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Web.Mvc;
 
@@ -8,21 +12,46 @@ namespace app.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "";
-            using (StreamReader sr = new StreamReader(Path.Combine(Server.MapPath("~/FolderToSave"), "svg.svg")))
-            {
-                ViewBag.Message = sr.ReadToEnd();
-            }
-            return View();
+            var util = new Util.Util();
+            var model = new List<Svg>();
+            model = util.GetSvg(Server.MapPath("/"));
+            return View(model);
         }
 
-        public ActionResult About()
+        public ActionResult GetSvg(string name)
         {
-            using (StreamReader sr = new StreamReader(Path.Combine(Server.MapPath("~/assets/svg"), "svg.svg")))
+            var util = new Util.Util();
+            var model = new List<Svg>();
+            model = util.GetSvg(Server.MapPath("/"));
+            string json = JsonConvert.SerializeObject(model);
+            return View(model);
+        }
+
+        public ActionResult About(string name)
+        {
+            if (name == null)
+            {
+                name = "svg.svg";
+            }
+            using (StreamReader sr = new StreamReader(Path.Combine(Server.MapPath("~/assets/svg"), name)))
             {
                 ViewBag.Message = sr.ReadToEnd();
             }
-            return View();
+            /*    var util = new Util.Util();
+                var model = new List<Jpg>();
+                model = util.GetJpg(Server.MapPath("/"));*/
+            var _base = new RepositorySelect();
+            var model = new List<Base>();
+            model = _base.GetBase();
+            return View(model);
+        }
+
+        public ActionResult GetProduct()
+        {
+            var _base = new RepositorySelect();
+            var model = new List<Base>();
+            model = _base.GetBase();
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Contact()
@@ -33,12 +62,12 @@ namespace app.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult About(string imageData, string logo)
+        public ActionResult About(string imageData, string logo, string wt, string ht)
         {
             var util = new Util.Util();
-            util.WriteFile(Server.MapPath("~/"), logo, "logo", "logo");
-            util.WriteFile(Server.MapPath("~/"), imageData, "png", "png");
-            return RedirectToAction("About", "Home");
+            var img = util.WriteFileLogo(Server.MapPath("~/"), logo, "logo", "logo", wt, ht);
+            util.WriteFileJpg(Server.MapPath("~/"), imageData, "png", "png", img);
+            return RedirectToAction("Contact", "Home");
         }
 
         [HttpPost]

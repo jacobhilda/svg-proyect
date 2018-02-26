@@ -171,5 +171,29 @@ option
 	opacity .5
 
 @media (max-width: 768px)
+	.mbx-creator
+		padding 0px
+	.mbx-creator-center
+		order 1
+	.mbx-creator-left
+		order 2
+	.mbx-creator-right
+		order 3
 	.mbx-creator-left, .mbx-creator-right
-		width 100% !important
+		width auto !important
+	.mbx-creator-center
+		width 100%
+		height calc((100vw - 15px) + 21.71vw ) !important
+		.mbximg
+			width 100% !important
+			height calc((100vw - 15px) + 21.71vw ) !important
+			img
+				width 100% !important
+				height calc((100vw - 15px) + 21.71vw ) !important
+
+	.mbx-creator-left, .mbx-creator-right
+		.tab-content
+			display none
+			.tab-pane
+				.tab-cont
+					padding 10px 0px 4px

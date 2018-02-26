@@ -13,7 +13,7 @@ namespace app.Models
         public double W { get; set; }
         public double H { get; set; }
         public string Align { get; set; }
-
+        public List<string> Sizes { get; set; }
         public List<string> Colors { get; set; }
         public List<string> Hexa { get; set; }
     }

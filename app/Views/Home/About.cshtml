@@ -304,30 +304,34 @@
                     <div class="d-flex align-items-center">
                         <select class="form-control" id="selectproduct">
                             @foreach (var item in lst)
-                            {
-                                <option class="modelOption" disabled>@item.Title</option>
-                                var list = Model.Where(x => x.Ref == item.Id).ToList();
-                                foreach (var O in list)
-                                {
-                                    <option coor="@O.X,@O.Y,@O.W,@O.H,@O.Align" value="@O.Code">@O.Title</option>
-                                }
-                            }
+                        {
+                            <option class="modelOption" disabled>@item.Title</option>
+                        var list = Model.Where(x => x.Ref == item.Id).ToList();
+                        foreach (var O in list)
+                        {
+                            <option coor="@O.X,@O.Y,@O.W,@O.H,@O.Align" value="@O.Code">@O.Title</option>
+                         }
+                       }
                         </select>
                     </div>
                 </div>
                 <div class="tab-cont">
                     <label>Product Color</label>
                     <div id="imgProduct" class="d-flex flex-wrap wrap5">
-                        <div style="background:#be0;" id="pickcolor"></div>
-                        <div style="background:#ff3e04;" id="pickcolor"></div>
-                        <div style="background:yellow;" id="pickcolor"></div>
-                        <div style="background:#c3e2f1;" id="pickcolor"></div>
-                        <div style="background:black;" id="pickcolor"></div>
+                       
                     </div>
                 </div>
             </div>
             <div class="tab-pane" id="profile" role="tabpanel">b</div>
         </div>
+
+        <div class="tab-cont">
+            <label>Size</label>
+             <div id="sizeObject" class="mainbox-size d-flex flex-wrap">
+                
+            </div>
+        </div>
+
     </aside>
 </section>
 
@@ -337,10 +341,16 @@
     <input type="hidden" name="imageData" id="imageData" />
     <input type="hidden" name="wt" id="wt" />
     <input type="hidden" name="ht" id="ht" />
+    <input type="hidden" name="ob" id="ob"/>
     <button type="button" id="btnSave" class="btn btn-primary btn-lg btn-block">PNG</button>
 }
 <script>
-
+    /***/
+    var JPG = {
+        prod: "",
+        color: "",
+        size: ""
+    };
     $("#btnPng").click(function () {
         var png = $("#htmlPng").clone();
         $("body").html(png);
@@ -390,38 +400,70 @@
         $("#imageData").val(png);
 
         $("#logo").val(svg);
-
+        $("#ob").val(JSON.stringify(JPG));
         var form = $("#drawingForm");
         form.submit()
     });
     var PRODUCT = [];
-    function setUrlImg(img) {
+    function setUrlImg(img,code) {
         $("#imgbase").attr("src", img);
+        JPG.color = code;
+    }
+    function setSize(code) {
+        JPG.size = code;
+        console.log(JPG);
     }
     function SerachProduct() {
         var item = null;
         var pro = $("#selectproduct").val();
+        JPG.prod = pro;
         PRODUCT.forEach(function (element) {
             if (element.Code == pro) {
                 $("#imgProduct").empty();
+                $("#sizeObject").empty();
                 var i = 0;
                 element.Colors.forEach(function (item) {
                     var url = "http://images.idakoos.com/singlebases/" + pro + item + ".jpg";
+
+                  
                     if (element.Hexa[i].split(',').length > 1) {
-                        $("#imgProduct").append("<div  id='pickcolor' style='background:linear-gradient(146deg," + element.Hexa[i].split(',')[0] + " 50%, " + element.Hexa[i].split(',')[1] + " 55%) ;'  onclick=setUrlImg('" + url + "')></div>");
-
-                    } else {
-                        $("#imgProduct").append("<div  id='pickcolor' style='background:" + element.Hexa[i] + ";'  onclick=setUrlImg('" + url + "')></div>");
-
+                        $("#imgProduct").append(`
+                      <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setUrlImg('${url}','${item}')" type="radio" name="catgo6" value="">
+                                    <div style="border: 1px solid #A8AB82;background:linear-gradient(146deg,${ element.Hexa[i].split(',')[0]} 50% ${element.Hexa[i].split(',')[1] }  55%); class="cr"></div>
+                                </label>
+                      </div>`);
+                    } else {                     
+                        $("#imgProduct").append(`
+                          <div class="radio-color">
+                                <label class="wrap5">
+                                    <input onclick="setUrlImg('${url}')" type="radio" name="catgo6" value="">
+                                    <div style="border: 1px solid #A8AB82; background:${element.Hexa[i]}" class="cr"></div>
+                                </label>
+                          </div>`);
                     }
                     if (i == 0) {
-                        setUrlImg(url);
+                        setUrlImg(url,item);
                     }
                     i++;
                 });
-
+                element.Sizes.forEach(function (item) {
+                    console.log(item);
+                    let data = item.split(":");
+                    let code = data[0];
+                    let title = data[1];
+                    $("#sizeObject").append(`
+                  <div class="radio-size">
+                    <label class="wrap5">
+                        <input onclick="setSize('${ code}')" type="radio" name="catgo5" value="${title}">
+                        <div  class="cr d-flex justify-content-center align-items-center">${title}</div>
+                    </label>
+                 </div>`);
+                });
             }
         });
+    
     }
     function GetProduct() {
         $.ajax({
@@ -439,5 +481,6 @@
     GetProduct();
     $("#selectproduct").change(function () {
         SerachProduct();
+        JPG.prod = $(this).val();
     });
 </script>

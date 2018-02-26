@@ -37,7 +37,7 @@ namespace app.Data
                         var color = Convert.ToString(reader["color"]).Split('|');
                         var _color = new List<string>();
                         var _hexa = new List<string>();
-
+                        var size = new List<string>();
                         foreach (string itm in color)
                         {
                             if (itm != "")
@@ -50,8 +50,14 @@ namespace app.Data
                                 }
                             }
                         }
+                        var _size = Convert.ToString(reader["size"]).Split('|');
+                        foreach (string item in _size)
+                        {
+                            size.Add(item);
+                        }
                         _base.Hexa = _hexa;
                         _base.Colors = _color;
+                        _base.Sizes = size;
                         list.Add(_base);
                     }
                 }

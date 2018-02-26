@@ -33,7 +33,7 @@ namespace app.Util
             html += "</html>";
             html += "<script type='text/javascript' src='../Scripts/base_logo.js'></script>";
 
-            name = Guid.NewGuid().ToString();
+       
             var path = Path.Combine(Path.Combine(root, "html"), name + ".html");
             using (StreamWriter sw = File.CreateText(path))
             {
@@ -86,19 +86,19 @@ namespace app.Util
             html += "</body>";
             html += "</html>";
             html += " <script src = '../Scripts/base_html.js' ></script> ";
-            name = Guid.NewGuid().ToString();
-            var path = Path.Combine(Path.Combine(root, "html"), name + ".html");
+          
+            var path = Path.Combine(Path.Combine(root, "html"), name + "-2.html");
             using (StreamWriter sw = File.CreateText(path))
             {
                 sw.Write(html);
             }
             string scriptFiile = Path.Combine(root, "js/jpg.js");
             string scripCode = File.ReadAllText(scriptFiile);
-            scripCode = scripCode.Replace("[URL]", Constant.GetHost + "html/" + name + ".html");
+            scripCode = scripCode.Replace("[URL]", Constant.GetHost + "html/" + name + "-2.html");
             string phatpng = Path.Combine(root.Replace("/", @"\"), @"images\" + type + @"\" + name + ".jpg");
             phatpng = phatpng.Replace(@"\", @"\\");
             scripCode = scripCode.Replace("[NAME]", phatpng);
-            string pathjs = Path.Combine(root, "js\\pa\\" + Guid.NewGuid().ToString() + ".js");
+            string pathjs = Path.Combine(root, "js\\pa\\" + name + ".js");
             using (StreamWriter sw = File.CreateText(pathjs))
             {
                 sw.Write(scripCode);

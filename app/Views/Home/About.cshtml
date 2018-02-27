@@ -304,33 +304,36 @@
                     <div class="d-flex align-items-center">
                         <select class="form-control" id="selectproduct">
                             @foreach (var item in lst)
-                        {
-                            <option class="modelOption" disabled>@item.Title</option>
-                        var list = Model.Where(x => x.Ref == item.Id).ToList();
-                        foreach (var O in list)
-                        {
-                            <option coor="@O.X,@O.Y,@O.W,@O.H,@O.Align" value="@O.Code">@O.Title</option>
-                         }
-                       }
+                {
+                    <option class="modelOption" disabled>@item.Title</option>
+        var list = Model.Where(x => x.Ref == item.Id).ToList();
+        foreach (var O in list)
+        {
+            <option coor="@O.X,@O.Y,@O.W,@O.H,@O.Align" value="@O.Code">@O.Title</option>
+}
+}
                         </select>
                     </div>
                 </div>
                 <div class="tab-cont">
                     <label>Product Color</label>
                     <div id="imgProduct" class="d-flex flex-wrap wrap5">
-                       
+
                     </div>
                 </div>
+
+                <div class="tab-cont">
+                    <label>Size</label>
+                    <div id="sizeObject" class="mainbox-size d-flex flex-wrap">
+
+                    </div>
+                </div>
+
             </div>
             <div class="tab-pane" id="profile" role="tabpanel">b</div>
         </div>
 
-        <div class="tab-cont">
-            <label>Size</label>
-             <div id="sizeObject" class="mainbox-size d-flex flex-wrap">
-                
-            </div>
-        </div>
+        
 
     </aside>
 </section>

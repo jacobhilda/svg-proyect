@@ -54,9 +54,9 @@ namespace app.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Contact()
+        public ActionResult Contact(string name)
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = @"/images/png/"+ name+".jpg";
 
             return View();
         }
@@ -69,7 +69,7 @@ namespace app.Controllers
             var util = new Util.Util();
             var img = util.WriteFileLogo(Server.MapPath("~/"), logo, name, "logo", wt, ht);
             util.WriteFileJpg(Server.MapPath("~/"), imageData, name, "png", img);
-            return RedirectToAction("Contact", "Home");
+            return RedirectToAction("Contact", "Home", new { @name = name });
         }
 
         [HttpPost]

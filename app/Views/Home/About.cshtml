@@ -355,7 +355,7 @@
         size: ""
     };
     $("#btnPng").click(function () {
-        var png = $("#htmlPng").clone();
+        var png = $("#htmlPng").parent().html();
         $("body").html(png);
         $("aside").attr("width", "100%");
         $("aside").attr("height", "100%");
@@ -377,7 +377,7 @@
         obj.children("img").css("height", "auto");
         var w = $("#boxlimit")[0].getBoundingClientRect().width;
         var h = $("#boxlimit")[0].getBoundingClientRect().height;
-
+        console.log($(obj).html());
         parentpng.append(obj);
 
         parentpng.children("div").children("div").html("[IMG]");
@@ -397,7 +397,7 @@
 
         $("#wt").val(w);
         $("#ht").val(h);
-
+        console.log($(html).html());
         parentSvg.append(html);
         var svg = parentSvg.html();
         $("#imageData").val(png);
@@ -414,7 +414,7 @@
     }
     function setSize(code) {
         JPG.size = code;
-        console.log(JPG);
+      
     }
     function SerachProduct() {
         var item = null;
@@ -426,9 +426,7 @@
                 $("#sizeObject").empty();
                 var i = 0;
                 element.Colors.forEach(function (item) {
-                    var url = "http://images.idakoos.com/singlebases/" + pro + item + ".jpg";
-
-                  
+                    var url = "http://images.idakoos.com/singlebases/" + pro + item + ".jpg";                  
                     if (element.Hexa[i].split(',').length > 1) {
                         $("#imgProduct").append(`
                       <div class="radio-color">
@@ -451,8 +449,8 @@
                     }
                     i++;
                 });
+                let j = 0;
                 element.Sizes.forEach(function (item) {
-                    console.log(item);
                     let data = item.split(":");
                     let code = data[0];
                     let title = data[1];
@@ -463,10 +461,17 @@
                         <div  class="cr d-flex justify-content-center align-items-center">${title}</div>
                     </label>
                  </div>`);
+                    if (j == 0) {
+                        JPG.size = code;
+                    }
+                    j++;
                 });
             }
         });
-    
+
+        $("#imgProduct").first().children().first().children().first().children().first().click();
+        $("#sizeObject").first().children().first().children().first().children().first().click();
+
     }
     function GetProduct() {
         $.ajax({

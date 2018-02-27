@@ -13,9 +13,9 @@ namespace app.Models
             var date = Convert.ToString(DateTime.Now.ToBinary());
             if (date.Length < 21)
             {
-                while (date.Length == 21)
+                while (date.Length < 21)
                 {
-                    date += "|";
+                    date += "W";
                 }
             }
             else
